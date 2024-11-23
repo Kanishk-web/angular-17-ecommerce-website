@@ -1,0 +1,38 @@
+<div class="orders">
+  <table class="orders-table" *ngIf="!loading && orders.length > 0">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through orders and display each order's details -->
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <!-- Assuming 'id' is the order ID -->
+        <td>{{ order.line_items[0]?.name }}</td>
+        <!-- Assuming the first item is shown, adjust if needed -->
+        <td>{{ order.date_created | date : "short" }}</td>
+        <!-- Date formatted -->
+        <td>{{ order.total | currency : "INR" }}</td>
+        <td>{{ order.status }}</td>
+        <td>
+          <button
+            class="btn btn-success"
+            [routerLink]="['/my-account/order-details', order.id]"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="loading">Loading orders...</div>
+</div>

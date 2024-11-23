@@ -1,0 +1,173 @@
+<footer id="cod__footer">
+  <!-- Footer -->
+  <div class="footer__container bg__cat--1">
+    <div class="container">
+      <div class="row">
+        <!-- About Us -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="footer">
+            <h2 class="title__line--2">ABOUT US</h2>
+            <div class="ft__details">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim
+              </p>
+              <br />
+              <p>
+                <b>PHONE:</b> Toll Free 9700000000 <br />
+                <b>EMAIL:</b> {{ email }}
+              </p>
+              <div class="ft__social__link">
+                <ul class="social__link">
+                  <li>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i> </a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Information Links -->
+        <div class="col-md-2 col-sm-6 col-xs-12 xmt-40">
+          <div class="footer">
+            <h2 class="title__line--2">INFORMATION</h2>
+            <div class="ft__inner">
+              <ul class="ft__list">
+                <li><a routerLink="/about">About Us</a></li>
+                <li><a routerLink="/privacy-policy">Privacy & Policy</a></li>
+                <li><a routerLink="/terms-condition">Terms & Condition</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Account Links -->
+        <div class="col-md-2 col-sm-6 col-xs-12 xmt-40 smt-40">
+          <div class="footer">
+            <h2 class="title__line--2">MY ACCOUNT</h2>
+            <div class="ft__inner">
+              <ul class="ft__list">
+                <li><a routerLink="/my-account">My Account</a></li>
+                <li><a routerLink="/shoppingCart">My Cart</a></li>
+                <li><a routerLink="/checkout">Checkout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-md-5 col-sm-6 col-xs-12 xmt-40 smt-40">
+          <div class="footer">
+            <h2 class="title__line--2">NEWSLETTER</h2>
+            <p>
+              Get all the latest information on Events, Sales, and Offers. Sign
+              up for the newsletter today!
+            </p>
+            <div class="ft__inner">
+              <div class="news__input">
+                <input type="text" placeholder="Your Mail*" />
+                <div class="send__btn">
+                  <a class="fr__btn" href="#">Send Mail</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="cod__copyright bg__cat--5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="copyrigcod__inner">
+            <p>
+              Copyright© <a href="#">Codingmaker</a> {{ currentYear }}. All
+              rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal -->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addCartModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" style="max-width: 524px">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">
+          Phone Number Verification
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="login__body">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="phone">Enter your phone number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="form-control"
+                placeholder="Phone number"
+                required
+                autofocus
+              />
+            </div>
+            <button
+              class="btn cod__btn btn-default btn-login btn-block"
+              type="submit"
+            >
+              Next
+            </button>
+          </form>
+          <div class="loginMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a
+  id="scrollUp"
+  class="testicon"
+  href="javascript:;"
+  (click)="backToTop()"
+  *ngIf="isShow"
+  style="position: fixed; z-index: 2147483647"
+>
+  <i class="fas fa-arrow-circle-up"></i>
+</a>

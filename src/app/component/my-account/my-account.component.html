@@ -1,0 +1,17 @@
+<app-breadcrumb [breadcrumbTitle]="'My Account'"></app-breadcrumb>
+
+<div class="my-account-container">
+  <div class="sidebar">
+    <button class="sidebar-button" [routerLink]="['/my-account/details']">
+      Account Details
+    </button>
+    <button class="sidebar-button" [routerLink]="['/my-account/orders']">
+      Orders
+    </button>
+    <button class="sidebar-button" (click)="logout()">Log Out</button>
+  </div>
+
+  <div class="content">
+    <router-outlet />
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div
+  id="carouselExampleControls"
+  class="bg-gray carousel slide"
+  data-bs-ride="carousel"
+>
+  <!-- Carousel indicators -->
+  <div class="carousel-indicators">
+    <button
+      *ngFor="let item of sliderItems; let i = index"
+      type="button"
+      [attr.data-bs-slide-to]="i"
+      [class.active]="i === 0"
+      aria-label="'Slide ' + (i + 1)"
+      data-bs-target="#carouselExampleControls"
+    ></button>
+  </div>
+
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div
+      class="carousel-item"
+      *ngFor="let item of sliderItems; let i = index"
+      [class.active]="i === 0"
+    >
+      <div class="container">
+        <div class="row align-items__center">
+          <div class="col-md-7 col-sm-7 col-xs-12 col-lg-6">
+            <div class="slide">
+              <div class="slider__inner">
+                <h2>{{ item.description }}</h2>
+                <h1>{{ item.title }}</h1>
+                <div class="cr__btn">
+                  <a [href]="item.product_url || '/product/woo-logo'"
+                    >Shop Now</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-5 col-xs-12 col-md-5 text-right">
+            <div class="slide__thumb">
+              <img
+                [src]="
+                  item.image_url || item.image || 'assets/default-image.jpg'
+                "
+                class="d-block w-100"
+                alt="slider-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel control buttons with data-bs-target -->
+  <a
+    class="carousel-control-prev"
+    role="button"
+    tabindex="0"
+    href="#carouselExampleControls"
+    data-bs-slide="prev"
+    data-bs-target="#carouselExampleControls"
+  >
+    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    role="button"
+    tabindex="0"
+    href="#carouselExampleControls"
+    data-bs-slide="next"
+    data-bs-target="#carouselExampleControls"
+  >
+    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>

@@ -1,0 +1,54 @@
+<div class="heading"></div>
+<div class="loginsignup-container">
+  <!-- REGISTER FORM -->
+  <form
+    *ngIf="activeForm === 'register'"
+    (ngSubmit)="registerUser(registerForm.value)"
+    #registerForm="ngForm"
+  >
+    <h2>REGISTER</h2>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Email" ngModel required />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        ngModel
+        required
+      />
+    </div>
+    <button type="submit">Register</button>
+
+    <p (click)="toggleForm('login')">
+      Already have an account ? <span class="highlighted">LOGIN</span>
+    </p>
+  </form>
+
+  <!-- LOGIN FORM -->
+  <form
+    *ngIf="activeForm === 'login'"
+    (ngSubmit)="loginUser(loginForm.value)"
+    #loginForm="ngForm"
+  >
+    <h2>LOGIN</h2>
+
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Email" ngModel required />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        ngModel
+        required
+      />
+    </div>
+    <button type="submit">Login</button>
+    <p (click)="toggleForm('register')">
+      Don't have an account ? <span class="highlighted">REGISTER</span>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <h2>Welcome to Your Dashboard</h2>
+
+  <section class="recent-orders">
+    <h3>Recent Orders</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of recentOrders">
+          <td>{{ order.orderId }}</td>
+          <td>{{ order.date }}</td>
+          <td>{{ order.total | currency }}</td>
+          <td>{{ order.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

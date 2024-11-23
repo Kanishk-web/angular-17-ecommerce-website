@@ -1,0 +1,72 @@
+<app-breadcrumb [breadcrumbTitle]="'Shopping Cart'"></app-breadcrumb>
+
+<div class="container">
+  <div class="cart-page">
+    <div class="row">
+      <div class="cart">
+        <div class="col-sm-8 details" *ngFor="let item of cartItems">
+          <ul>
+            <li>
+              <a>
+                <img
+                  class="pic-1"
+                  [src]="
+                    item.images && item.images.length
+                      ? item.images[0].src
+                      : 'assets/default-image.jpg'
+                  "
+                  alt="{{ item.name }}"
+                />
+              </a>
+            </li>
+            <div class="cart-item__quantity">
+              <button (click)="decreaseQuantity(item)">-</button>
+              <span>{{ item.quantity }}</span>
+              <button (click)="increaseQuantity(item)">+</button>
+            </div>
+            <li>
+              <span>Product Name: {{ item.name }}</span>
+            </li>
+            <li>
+              <span>Price: ₹{{ item.price }}</span>
+            </li>
+            <li>
+              <span>Quantity: {{ item.quantity }}</span>
+            </li>
+            <li>
+              <button class="form-button" (click)="removeFromCart(item)">
+                Remove To Cart
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4 summary">
+        <h3>Summary</h3>
+        <ul>
+          <li>
+            <span>Amount: ₹{{ getSubtotal() }}</span>
+          </li>
+          <li>
+            <span>Tax:</span><span>₹{{ tax }}</span>
+          </li>
+          <li>
+            <span>Delivery:</span><span>₹{{ delivery }}</span>
+          </li>
+          <li>
+            <span>Discount:</span><span>₹{{ discount }}</span>
+          </li>
+          <li>
+            <div class="cart-total__item">
+              <span>Subtotal:</span>
+              <span>₹{{ getSubtotal() }}</span>
+            </div>
+          </li>
+          <button class="form-button max-width bg-d">
+            <a routerLink="/checkout">Proceed To Checkout</a>
+          </button>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

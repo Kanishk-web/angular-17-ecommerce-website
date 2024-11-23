@@ -1,0 +1,138 @@
+<app-breadcrumb [breadcrumbTitle]="'Contact Us'"></app-breadcrumb>
+
+<div class="container">
+  <div class="row">
+    <h4 class="text-center mb-5"></h4>
+    <div class="col-md-4">
+      <div class="contact-page">
+        <h3>location</h3>
+
+        <p>69 Westmore Drive #16 Etobicoke Ontario M9v3y6</p>
+      </div>
+      <hr class="line-hori" />
+      <div class="contact-page">
+        <h3>Mail Us</h3>
+        <p>
+          <a href=" manojb99.ccna@gmail.com">{{ "manojb99.ccna@gmail.com" }}</a>
+        </p>
+      </div>
+      <hr class="line-hori" />
+      <div class="contact-page">
+        <h3>Call Us</h3>
+        <p><a href="tel:416-748-9900">416-748-9900</a></p>
+      </div>
+    </div>
+
+    <!-- start form -->
+
+    <div class="col-md-8">
+      <div class="wpcf7 js" id="wpcf7-f6-o1" lang="en-US" dir="ltr">
+        <div class="screen-reader-response">
+          <p role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <form [formGroup]="userForm" (ngSubmit)="onSave()">
+          <div class="contact-form">
+            <h3>Contact Us</h3>
+            <div>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  size="40"
+                  maxlength="400"
+                  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control"
+                  aria-required="true"
+                  aria-invalid="false"
+                  placeholder=""
+                  value=""
+                  type="text"
+                  name="Name"
+                  formControlName="name"
+                />
+                <div class="text-danger">
+                  @if (userForm.controls['name'].touched &&
+                  userForm.controls['name'].errors?.['required']) {
+                  <span>Name is required</span>
+
+                  } @else if (userForm.controls['name'].errors?.['minlength']) {
+                  <span>Min 3 Charactors is required</span>
+
+                  }
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone No.</label>
+                <input
+                  size="40"
+                  maxlength="400"
+                  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control"
+                  aria-required="true"
+                  aria-invalid="false"
+                  placeholder=""
+                  value=""
+                  type="text"
+                  name="Phone"
+                  formControlName="phone"
+                />
+                <div class="text-danger">
+                  @if (userForm.controls['phone'].touched &&
+                  userForm.controls['phone'].errors?.['required']) {
+                  <span>Number is required</span>
+                  }
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Email">Email Us</label>
+                <input
+                  size="40"
+                  maxlength="400"
+                  class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email form-control"
+                  aria-required="true"
+                  aria-invalid="false"
+                  placeholder=""
+                  value=""
+                  type="email"
+                  name="Email"
+                  formControlName="email"
+                />
+                <div class="text-danger">
+                  @if (userForm.controls['email'].touched &&
+                  userForm.controls['email'].errors?.['required']) {
+                  <span>Email is required</span>
+                  } @else if ((userForm.controls['email'].errors?.['pattern']))
+                  {
+                  <span>Please write correct email</span>
+                  }
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Email">Message</label>
+                <span class="wpcf7-form-control-wrap" data-name="Message">
+                  <textarea
+                    cols="40"
+                    rows="10"
+                    maxlength="2000"
+                    class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control"
+                    aria-required="true"
+                    aria-invalid="false"
+                    placeholder="Message"
+                    name="Message"
+                  ></textarea>
+                </span>
+              </div>
+              <div class="read-btn">
+                <input
+                  class="wpcf7-form-control wpcf7-submit has-spinner read-more"
+                  type="submit"
+                  value="Submit"
+                /><span class="wpcf7-spinner"></span>
+              </div>
+            </div>
+          </div>
+          <div class="wpcf7-response-output" aria-hidden="true"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-map></app-map>

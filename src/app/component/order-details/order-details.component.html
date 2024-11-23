@@ -1,0 +1,46 @@
+<div class="order-details">
+  <h2>Order Details</h2>
+
+  <!-- Product Name with Safe Access -->
+  <ng-container *ngIf="order?.line_items?.length > 0">
+    <div class="detail-item">
+      <strong>Product Name:</strong>
+      <span>{{ order.line_items[0].name }}</span>
+    </div>
+  </ng-container>
+
+  <div class="detail-item">
+    <strong>Order Date:</strong>
+    <span>{{ order.date_created | date : "short" }}</span>
+  </div>
+
+  <div class="detail-item">
+    <strong>Status:</strong>
+    <span>{{ order.status }}</span>
+  </div>
+
+  <div class="detail-item">
+    <strong>Total Amount:</strong>
+    <span>{{ order.total | currency : "INR" }}</span>
+  </div>
+
+  <!-- Billing Address -->
+  <div class="detail-item" *ngIf="order?.billing">
+    <strong>Billing Address:</strong>
+    <span>
+      {{ order.billing.first_name }} {{ order.billing.last_name }},
+      {{ order.billing.phone }}, {{ order.billing.email }}
+    </span>
+  </div>
+
+  <!-- Shipping Address -->
+  <div class="detail-item" *ngIf="order?.shipping">
+    <strong>Shipping Address:</strong>
+    <span>
+      {{ order.shipping.first_name }} {{ order.shipping.last_name }},
+      {{ order.shipping.address_1 }}, {{ order.shipping.city }},
+      {{ order.shipping.state }} - {{ order.shipping.postcode }},
+      {{ order.shipping.country }}
+    </span>
+  </div>
+</div>

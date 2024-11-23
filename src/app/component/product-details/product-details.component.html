@@ -1,0 +1,37 @@
+<app-breadcrumb [breadcrumbTitle]="'Product Details'"></app-breadcrumb>
+
+<div class="container">
+  <div class="product-details">
+    <div *ngIf="product" class="product-card">
+      <img
+        class="pic-1"
+        [src]="
+          product.images && product.images.length
+            ? product.images[0].src
+            : 'assets/default-image.jpg'
+        "
+        [alt]="product.name"
+      />
+
+      <div class="product-info">
+        <h2 class="product-name">{{ product.name }}</h2>
+
+        <p class="product-description" [innerHTML]="product.description"></p>
+
+        <p class="product-price">
+          Price: ₹<span>{{ product.price }}</span>
+        </p>
+
+        <div class="button-group">
+          <button class="wishlist" (click)="addToWishlist()">
+            Add to Wishlist
+          </button>
+
+          <button class="add-to-cart" (click)="addToCart(product)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

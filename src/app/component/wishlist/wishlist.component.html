@@ -1,0 +1,53 @@
+<app-breadcrumb [breadcrumbTitle]="'Wishlist'"></app-breadcrumb>
+
+<div class="wrapper mtb--40">
+  <div class="container">
+    <table class="table table-hover mb-3 cart-table">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th class="text-center">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of wishlistProducts$ | async">
+          <td class="col-md-1">
+            <div class="media">
+              <img
+                class="pic-1"
+                [src]="
+                  product.images && product.images.length
+                    ? product.images[0].src
+                    : 'assets/default-image.jpg'
+                "
+                alt="{{ product.name }}"
+              />
+            </div>
+          </td>
+          <td class="col-md-3">
+            <div class="h3">
+              <a [href]="'/product/' + product.slug">{{ product.name }}</a>
+            </div>
+          </td>
+          <td class="col-sm-1 col-md-1 text-center">
+            <strong>{{ product.price | currency }}</strong>
+          </td>
+          <td class="col-sm-1 col-md-1">
+            <a (click)="addToCart(product)" data-tip="Add to Cart">
+              <i class="font-1 fa fa-shopping-cart"></i>
+            </a>
+            &nbsp; &nbsp;
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-danger"
+              (click)="removeFromWishlist(product)"
+            >
+              <i class="font-1 fa fa-close"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

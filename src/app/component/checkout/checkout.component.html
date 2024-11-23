@@ -1,0 +1,145 @@
+<app-breadcrumb [breadcrumbTitle]="'Checkout'"></app-breadcrumb>
+
+<div class="container">
+  <div class="checkout-container">
+    <div class="checkout-info">
+      <div class="left-box">
+        <div class="info-section">
+          <h2>Contact Information</h2>
+          <form
+            #checkoutForm="ngForm"
+            (ngSubmit)="checkoutForm.valid && payNow()"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                [(ngModel)]="userDetails.name"
+                name="name"
+                class="form-control"
+                placeholder="Enter your name"
+                required
+              />
+              <div
+                *ngIf="checkoutForm.submitted && !userDetails.name"
+                class="text-danger"
+                role="alert"
+              >
+                Name is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                [(ngModel)]="userDetails.email"
+                name="email"
+                class="form-control"
+                placeholder="Enter your email"
+                required
+              />
+              <div
+                *ngIf="checkoutForm.submitted && !userDetails.email"
+                class="error"
+              >
+                Valid email is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input
+                type="text"
+                [(ngModel)]="userDetails.phone"
+                name="phone"
+                class="form-control"
+                placeholder="Enter your phone number"
+                required
+              />
+              <div
+                *ngIf="checkoutForm.submitted && !userDetails.phone"
+                class="error"
+              >
+                Phone number is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="shippingAddress">Shipping Address</label>
+              <textarea
+                [(ngModel)]="userDetails.shippingAddress"
+                name="shippingAddress"
+                class="form-control"
+                placeholder="Enter your shipping address"
+                required
+              ></textarea>
+              <div
+                *ngIf="checkoutForm.submitted && !userDetails.shippingAddress"
+                class="error"
+              >
+                Shipping address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="billingAddress">Billing Address</label>
+              <textarea
+                [(ngModel)]="userDetails.billingAddress"
+                name="billingAddress"
+                class="form-control"
+                placeholder="Enter your billing address"
+                required
+              ></textarea>
+              <div
+                *ngIf="checkoutForm.submitted && !userDetails.billingAddress"
+                class="error"
+              >
+                Billing address is required.
+              </div>
+            </div>
+
+            <button
+              class="place-order"
+              (click)="checkoutForm.valid && payNow()"
+              [disabled]="!checkoutForm.valid"
+            >
+              Place Order
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="right-box">
+        <div class="order-summary">
+          <h2>Order Summary</h2>
+          <div class="order-item" *ngFor="let item of cartItems">
+            <img
+              class="pic-1"
+              [src]="
+                item.images && item.images.length
+                  ? item.images[0].src
+                  : 'assets/default-image.jpg'
+              "
+              alt="{{ item.name }}"
+            />
+
+            <p>{{ item.name }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: ₹{{ item.price }}</p>
+          </div>
+          <div class="order-details">
+            <p>
+              Subtotal: <span>₹{{ cartTotal }}</span>
+            </p>
+            <p>Shipping: <span>₹0.00</span> (Free shipping)</p>
+            <p>
+              Total: <span>₹{{ cartTotal }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

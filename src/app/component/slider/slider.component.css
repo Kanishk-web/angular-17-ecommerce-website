@@ -1,0 +1,111 @@
+img {
+  height: 60vh;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #c43b68;
+  border-radius: 100%;
+  padding: 20px;
+  font-size: 10px;
+}
+
+.carousel-control-prev-icon:after,
+.carousel-control-next-icon:after {
+  color: #fff;
+  font-size: 10px;
+  height: 50px;
+  text-shadow: none;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 10;
+}
+
+.carousel-caption h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.carousel-caption h1 {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.cr__btn a {
+  border: none;
+}
+
+/* Second Sytle */
+/* Basic styling for the carousel container */
+/* .carousel.slide {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.carousel-item {
+  display: flex;
+  align-items: center;
+  min-height: 400px;
+  padding: 20px 0;
+}
+
+
+.carousel-item:nth-child(odd) .slide__thumb {
+  order: 1; 
+}
+.carousel-item:nth-child(odd) .slider__inner {
+  order: 2; 
+  text-align: left;
+}
+
+.carousel-item:nth-child(even) .slide__thumb {
+  order: 2; 
+}
+.carousel-item:nth-child(even) .slider__inner {
+  order: 1; 
+  text-align: right;
+}
+
+
+.slide__thumb img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.slider__inner {
+  padding: 20px;
+}
+.slider__inner h2 {
+  font-size: 24px;
+  color: #333;
+}
+.slider__inner h1 {
+  font-size: 36px;
+  color: #111;
+  margin: 10px 0;
+}
+.slider__inner .cr__btn a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.slider__inner .cr__btn a:hover {
+  background-color: #0056b3;
+} */

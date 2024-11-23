@@ -1,0 +1,152 @@
+<header id="cod__header" class="cod__header__area header--one">
+  <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+    <div class="container">
+      <div class="row">
+        <div class="menumenu__container clearfix">
+          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
+            <div class="logo">
+              <a category="">
+                <img
+                  src="../../../../assets/images/logo/logo.png"
+                  alt="logo images"
+                  (click)="navigateToHome()"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
+            <nav class="main__menu__nav hidden-xs hidden-sm">
+              <ul class="main__menu">
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/about">About</a></li>
+                <li class="drop" (click)="toggleCategories()">
+                  <a>Category</a>
+                  <ul class="dropdown" *ngIf="showCategories">
+                    <li *ngFor="let item of menuItems">
+                      <a [routerLink]="['/category', item.slug]">{{
+                        item.name
+                      }}</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li><a routerLink="/contact">Contact</a></li>
+              </ul>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu clearfix visible-xs visible-sm">
+              <nav id="mobile_dropdown">
+                <ul>
+                  <li><a routerLink="/home">Home</a></li>
+                  <li><a routerLink="/about">About</a></li>
+                  <li class="drop" (click)="toggleCategories()">
+                    <a routerLink="/category">Category</a>
+                    <ul class="dropdown" *ngIf="showCategories">
+                      <li *ngFor="let item of menuItems">
+                        <a [routerLink]="['/category', item.slug]">{{
+                          item.name
+                        }}</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li><a routerLink="/contact">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Right-side icons (Search, Account, Cart) -->
+          <div class="col-md-3 col-lg-2 col-sm-4 col-xs-4">
+            <div class="header__right">
+              <div class="header__account">
+                <a routerLink="/login"
+                  ><i class="bi bi-person" style="color: black"></i
+                ></a>
+              </div>
+              <div class="cod__shopping__cart">
+                <a class="cart__menu" routerLink="/wishlist"
+                  ><i class="fa fa-heart"></i></a
+                ><a class="cart__menu" routerLink="/wishlist"
+                  ><span class="cod__qua">{{ wishlistCount }}</span></a
+                >
+              </div>
+              <div class="header__account"><a></a></div>
+
+              <div class="cod__shopping__cart">
+                <a
+                  href="javascript:void(0)"
+                  data-tip="Add to Cart"
+                  (click)="toggleCart()"
+                >
+                  <i class="bi bi-cart-dash-fill"></i>
+                </a>
+                <span class="cart-quantity">{{ cartItemCount }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu-area"></div>
+    </div>
+  </div>
+</header>
+
+<!-- Cart Popup Code -->
+<div class="cart-container" [ngClass]="{ open: cartOpen }">
+  <div class="cart-header">
+    <button (click)="toggleCart()" class="close-btn" style="color: black">
+      &times;
+    </button>
+  </div>
+  <div class="cart-body">
+    <div class="shopping__cart">
+      <div class="shopping__cart__inner">
+        <div class="shp__cart__wrap">
+          <div class="shp__single__product">
+            <div class="shp__pro__thumb">
+              <a [routerLink]="['/productDetails']">
+                <img
+                  src="../../../assets/images/product/product-1.jpg"
+                  alt="product images"
+                  style="width: 100%"
+                />
+              </a>
+              <br />
+              <br />
+            </div>
+            <div class="shp__pro__details">
+              <h2><a [routerLink]="['/productDetails']">Women's Blouse</a></h2>
+              <span class="quantity">QTY: {{ cartItemCount }}</span> <br />
+              <span class="shp__price">$16.00</span>
+            </div>
+            <div class="remove__btn">
+              <a href="#" title="Remove this item"
+                ><i class="zmdi zmdi-close"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <ul class="shoping__total">
+          <li class="subtotal" style="font-size: 20px">Subtotal:</li>
+          <li class="total__price" style="color: #c43b68">₹{{ cartTotal }}</li>
+        </ul>
+        <ul class="shopping__btn">
+          <li class="shp__checkout">
+            <a routerLink="/shoppingCart" routerLinkActive="active"
+              >View Cart</a
+            >
+          </li>
+          <li class="shp__checkout">
+            <a routerLink="/checkout" routerLinkActive="active">Checkout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
