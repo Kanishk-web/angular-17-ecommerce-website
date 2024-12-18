@@ -16,37 +16,24 @@ import { DetailsComponent } from './component/account/details/details.component'
 import { OrderDetailsComponent } from './component/order-details/order-details.component';
 import { OrderListingComponent } from './component/order-listing/order-listing.component';
 import { LoginRegisterComponent } from './component/login-register/login-register.component';
+import { ProductComponent } from './component/product/product.component';
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-
-  {
-    path: 'category/:slug',
-    loadComponent: () =>
-      import('./component/category/category.component').then(
-        (m) => m.CategoryComponent
-      ),
-  },
-
-  { path: 'contact', component: ContactComponent },
-  { path: 'footer', component: FooterComponent },
   { path: 'header', component: HeaderComponent },
-  { path: 'index', component: IndexComponent },
+  { path: 'footer', component: FooterComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'index', component: IndexComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'shoppingCart', component: ShoppingCartComponent },
   { path: 'login', component: LoginRegisterComponent },
-
-  {
-    path: 'productDetails/:id',
-    loadComponent: () =>
-      import('./component/product-details/product-details.component').then(
-        (m) => m.ProductDetailsComponent
-      ),
-  },
-
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'productDetails/:id', component: ProductDetailsComponent },
+  { path: 'order-listing', component: OrderListingComponent },
 
   {
     path: 'my-account',
@@ -60,5 +47,19 @@ export const routes: Routes = [
     ],
   },
 
-  { path: 'order-listing', component: OrderListingComponent },
+  // {
+  //   path: 'category/:slug',
+  //   loadComponent: () =>
+  //     import('./component/category/category.component').then(
+  //       (m) => m.CategoryComponent
+  //     ),
+  // },
+
+  // {
+  //   path: 'productDetails/:id',
+  //   loadComponent: () =>
+  //     import('./component/product-details/product-details.component').then(
+  //       (m) => m.ProductDetailsComponent
+  //     ),
+  // },
 ];
