@@ -1,0 +1,109 @@
+<app-breadcrumb [breadcrumbTitle]="'Product'"></app-breadcrumb>
+
+<section class="product__grid_category mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar with Filters -->
+      <div class="col-12 col-md-4 col-lg-3 display-none-md" id="filters">
+        <div class="side-bar side-bar--filter" attr-val="category">
+          <div>
+            <a
+              href="javascript:;"
+              class="filter-opt button"
+              attr-title="filter-category"
+              (click)="clearFilters()"
+            >
+              Clear filter
+            </a>
+          </div>
+          <br />
+          <h5 class="title">Category</h5>
+          <div class="div-con-filter">
+            <p
+              class="col-category finder-page"
+              *ngFor="let category of categories"
+            >
+              <label>
+                <input
+                  type="checkbox"
+                  [value]="category.name"
+                  (change)="onFilterChange($event)"
+                  [checked]="selectedCategories.includes(category.name)"
+                />
+                {{ category.name }}
+              </label>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="col-12 col-md-12 col-lg-9">
+        <div class="row">
+          <div id="allproduct">
+            <div
+              class="col-md-4 col-sm-6"
+              *ngFor="let product of filteredProducts"
+            >
+              <div class="product-grid">
+                <div class="product-image">
+                  <a>
+                    <img
+                      class="pic-1"
+                      [src]="
+                        product.images && product.images.length
+                          ? product.images[0].src
+                          : 'assets/default-image.jpg'
+                      "
+                      alt="{{ product.name }}"
+                    />
+                  </a>
+                  <ul class="social">
+                    <li>
+                      <a
+                        [routerLink]="['/productDetails', product.id]"
+                        data-tip="View Details"
+                        ><i class="bi bi-search"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a
+                        data-tip="Add to Wishlist"
+                        (click)="addToWishlist(product)"
+                        ><i class="bi bi-bag"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a
+                        href="javascript:void(0)"
+                        data-tip="Add to Cart"
+                        (click)="addToCart(product)"
+                      >
+                        <i class="bi bi-cart-dash-fill"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product-content">
+                  <h3 class="title">
+                    <a href="#">{{ product.name }}</a>
+                  </h3>
+                  <div class="price">INR {{ product.price }}</div>
+                  <a class="add-to-cart" href="#" (click)="addToCart(product)">
+                    + Add To Cart
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="loader-div col-sm-12 text-center clearfix"
+            *ngIf="isLoading"
+          >
+            <div id="loader" class="fa-spin fa fa-spinner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

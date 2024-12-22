@@ -19,7 +19,7 @@
               <ul class="main__menu">
                 <li><a routerLink="/home">Home</a></li>
                 <li><a routerLink="/about">About</a></li>
-                <li class="drop" (click)="toggleCategories()">
+                <!-- <li class="drop" (click)="toggleCategories()">
                   <a>Category</a>
                   <ul class="dropdown" *ngIf="showCategories">
                     <li *ngFor="let item of menuItems">
@@ -28,7 +28,9 @@
                       }}</a>
                     </li>
                   </ul>
-                </li>
+                </li> -->
+
+                <li><a routerLink="/product">Product</a></li>
 
                 <li><a routerLink="/contact">Contact</a></li>
               </ul>
@@ -40,7 +42,7 @@
                 <ul>
                   <li><a routerLink="/home">Home</a></li>
                   <li><a routerLink="/about">About</a></li>
-                  <li class="drop" (click)="toggleCategories()">
+                  <!-- <li class="drop" (click)="toggleCategories()">
                     <a routerLink="/category">Category</a>
                     <ul class="dropdown" *ngIf="showCategories">
                       <li *ngFor="let item of menuItems">
@@ -49,7 +51,9 @@
                         }}</a>
                       </li>
                     </ul>
-                  </li>
+                  </li> -->
+
+                  <li><a routerLink="/product">Product</a></li>
 
                   <li><a routerLink="/contact">Contact</a></li>
                 </ul>

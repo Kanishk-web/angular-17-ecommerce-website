@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { CategoryComponent } from '../category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import { CartService } from '../../services/cart.service';
@@ -11,7 +9,7 @@ import { WishlistService } from '../../services/wishlist.service';
 @Component({
   selector: 'app-product-grid',
   standalone: true,
-  imports: [CommonModule, CategoryComponent, HttpClientModule, RouterLink],
+  imports: [CommonModule, HttpClientModule, RouterLink],
   templateUrl: './product-grid.component.html',
   styleUrl: './product-grid.component.css',
 })
@@ -21,19 +19,22 @@ export class ProductGridComponent {
   constructor(
     private apiService: ApiService,
     private cartService: CartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    public changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.apiService.getLatestProductsForHome().subscribe(
-      (response: any) => {
-        console.log('Fetched data from API:', response);
+    this.apiService.getLatestProductsForHome().subscribe({
+      next: (response: any) => {
+        console.log('Fetch data from api: ', response);
         this.products = response.data || response;
+        console.log(this.products);
+        this.changeDetector.detectChanges();
       },
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
+      error: (error) => {
+        console.log('Error fetching sliders', error);
+      },
+    });
   }
 
   loadMore() {}

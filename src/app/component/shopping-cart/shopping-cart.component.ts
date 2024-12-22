@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
@@ -9,13 +7,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    RouterLink,
-    CommonModule,
-    BreadcrumbComponent,
-  ],
+  imports: [RouterLink, CommonModule, BreadcrumbComponent],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css',
 })

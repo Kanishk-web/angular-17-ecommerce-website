@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../../services/api.service';
@@ -42,18 +42,22 @@ export class SliderComponent implements OnInit {
 
   sliderItems: SliderItem[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    public changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.apiService.getTopSliders().subscribe(
-      (response: any) => {
-        console.log('Fetched data from API:', response);
+    this.apiService.getTopSliders().subscribe({
+      next: (response: any) => {
+        console.log('Fetch data from api: ', response);
         this.sliderItems = response.data || response;
         console.log(this.sliderItems);
+        this.changeDetector.detectChanges();
       },
-      (error) => {
-        console.error('Error fetching sliders:', error);
-      }
-    );
+      error: (error) => {
+        console.log('Error fetching sliders', error);
+      },
+    });
   }
 }

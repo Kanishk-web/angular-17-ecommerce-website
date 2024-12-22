@@ -38,6 +38,7 @@ export class ContactComponent implements OnInit {
       Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
     ]),
     phone: new FormControl('', [Validators.required]),
+    message: new FormControl('', [Validators.required]),
   });
   constructor(private http: HttpClient) {}
 

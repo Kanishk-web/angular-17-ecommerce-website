@@ -1,7 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
@@ -9,35 +7,29 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 @Component({
   selector: 'app-order-listing',
   standalone: true,
-  imports: [
-    CommonModule,
-    CurrencyPipe,
-    HeaderComponent,
-    FooterComponent,
-    RouterLink,
-    BreadcrumbComponent,
-  ],
+  imports: [CommonModule, CurrencyPipe, RouterLink, BreadcrumbComponent],
   templateUrl: './order-listing.component.html',
   styleUrl: './order-listing.component.css',
 })
 export class OrderListingComponent {
   orders: any[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    public changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.getOrders();
-  }
-
-  // Method to fetch orders using API service
-  getOrders(): void {
-    this.apiService.getOrdersData().subscribe(
-      (data) => {
-        this.orders = data;
+    this.apiService.getOrdersData().subscribe({
+      next: (response: any) => {
+        console.log('Fetch data from api: ', response);
+        this.orders = response.data || response;
+        console.log(this.orders);
+        this.changeDetector.detectChanges();
       },
-      (error) => {
-        console.error('Error fetching orders:', error);
-      }
-    );
+      error: (error) => {
+        console.log('Error fetching sliders', error);
+      },
+    });
   }
 }

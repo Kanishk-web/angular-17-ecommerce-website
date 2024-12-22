@@ -116,7 +116,14 @@
                     aria-invalid="false"
                     placeholder="Message"
                     name="Message"
+                    formControlName="message"
                   ></textarea>
+                  <div class="text-danger">
+                    @if (userForm.controls['message'].touched &&
+                    userForm.controls['message'].errors?.['required']) {
+                    <span>Message is required</span>
+                    }
+                  </div>
                 </span>
               </div>
               <div class="read-btn">

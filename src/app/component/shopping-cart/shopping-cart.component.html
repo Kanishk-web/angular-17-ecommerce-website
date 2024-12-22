@@ -1,72 +1,104 @@
 <app-breadcrumb [breadcrumbTitle]="'Shopping Cart'"></app-breadcrumb>
 
-<div class="container">
-  <div class="cart-page">
-    <div class="row">
-      <div class="cart">
-        <div class="col-sm-8 details" *ngFor="let item of cartItems">
-          <ul>
-            <li>
-              <a>
-                <img
-                  class="pic-1"
-                  [src]="
-                    item.images && item.images.length
-                      ? item.images[0].src
-                      : 'assets/default-image.jpg'
-                  "
-                  alt="{{ item.name }}"
-                />
-              </a>
-            </li>
-            <div class="cart-item__quantity">
-              <button (click)="decreaseQuantity(item)">-</button>
-              <span>{{ item.quantity }}</span>
-              <button (click)="increaseQuantity(item)">+</button>
-            </div>
-            <li>
-              <span>Product Name: {{ item.name }}</span>
-            </li>
-            <li>
-              <span>Price: ₹{{ item.price }}</span>
-            </li>
-            <li>
-              <span>Quantity: {{ item.quantity }}</span>
-            </li>
-            <li>
-              <button class="form-button" (click)="removeFromCart(item)">
-                Remove To Cart
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-4 summary">
-        <h3>Summary</h3>
-        <ul>
-          <li>
-            <span>Amount: ₹{{ getSubtotal() }}</span>
-          </li>
-          <li>
-            <span>Tax:</span><span>₹{{ tax }}</span>
-          </li>
-          <li>
-            <span>Delivery:</span><span>₹{{ delivery }}</span>
-          </li>
-          <li>
-            <span>Discount:</span><span>₹{{ discount }}</span>
-          </li>
-          <li>
-            <div class="cart-total__item">
-              <span>Subtotal:</span>
-              <span>₹{{ getSubtotal() }}</span>
-            </div>
-          </li>
-          <button class="form-button max-width bg-d">
-            <a routerLink="/checkout">Proceed To Checkout</a>
-          </button>
-        </ul>
+<div class="wrapper mtb--40">
+  <div class="container">
+    <!-- Check if cart is empty -->
+    <div *ngIf="cartItems.length === 0; else cartContent">
+      <h2 class="h2 text-center mb-3">Your cart is empty</h2>
+      <div class="text-center">
+        <a class="btn btn-danger" routerLink="/product">Shop now</a>
       </div>
     </div>
+
+    <!-- Cart content if there are items -->
+    <ng-template #cartContent>
+      <table class="table table-hover mb-3 cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td class="col-md-4">
+              <div class="media">
+                <a class="thumbnail pull-left" href="/#">
+                  <img
+                    class="pic-1"
+                    [src]="
+                      item.images && item.images.length
+                        ? item.images[0].src
+                        : 'assets/default-image.jpg'
+                    "
+                    alt="{{ item.name }}"
+                  />
+                </a>
+              </div>
+            </td>
+            <td class="col-sm-1 col-md-2 text-center">
+              <strong>{{ item.name }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-2 text-center">
+              <div class="cart-quantity">
+                <button
+                  class="btn btn-sm inline-block"
+                  (click)="decreaseQuantity(item)"
+                >
+                  <i class="fa fa-minus"></i>
+                </button>
+                <span class="text-center inline-block">{{
+                  item.quantity
+                }}</span>
+                <button
+                  class="btn btn-sm inline-block"
+                  (click)="increaseQuantity(item)"
+                >
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>{{ item.price }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>INR {{ getSubtotal() }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-1">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                (click)="removeFromCart(item)"
+              >
+                <i class="fa fa-close"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-12 cart">
+        <div class="col-md-6 p-4 offset-md-6 border alert alert-secondary">
+          <div class="d-flex gst">
+            <div class="flex-grow-1">Subtotal</div>
+            INR {{ getSubtotal() }}
+          </div>
+          <hr />
+          <div class="d-flex">
+            <div class="flex-grow-1"><strong>Total Amount</strong></div>
+            <div>
+              <strong>INR {{ getSubtotal() }}</strong>
+            </div>
+          </div>
+          <div class="d-grid mt-3">
+            <a type="button" class="btn btn-dark" routerLink="/checkout"
+              >Proceed to Checkout</a
+            >
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

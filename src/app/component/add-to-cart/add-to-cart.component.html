@@ -1,0 +1,104 @@
+<div class="col-12 col-md-12 col-lg-9">
+  <div class="row">
+    <div class="product-grid" style="width: 300px">
+      <div class="product-image">
+        <div class="item">
+          <div class="cart">
+            <a href="#">
+              <img
+                src="../../../assets/product-1.jpg"
+                alt="product-1"
+                style="width: 300px"
+              />
+            </a>
+            <ul class="social">
+              <li>
+                <a href="" data-tip="View Details"
+                  ><i class="bi bi-search"></i
+                ></a>
+              </li>
+              <li>
+                <a href="" data-tip="Add to Wishlist"
+                  ><i class="bi bi-bag"></i
+                ></a>
+              </li>
+              <li>
+                <!-- 'Add to Cart' icon ke liye click event bind kar rahe hain -->
+                <a
+                  href="javascript:void(0)"
+                  (click)="toggleCart()"
+                  data-tip="Add to Cart"
+                >
+                  <i class="bi bi-cart-dash-fill"></i>
+                </a>
+              </li>
+            </ul>
+            <span class="product-new-label">Sale</span>
+            <span class="product-discount-label">20%</span>
+            <div class="product-content">
+              <h3 class="title"><a href="#">Women's Blouse</a></h3>
+              <div class="price">
+                $16.00
+                <span>$20.00</span>
+              </div>
+              <a class="add-to-cart" href="">+ Add To Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Popup -->
+<div class="cart-container" [ngClass]="{ open: cartOpen }">
+  <div class="cart-header">
+    <button (click)="toggleCart()" class="close-btn" style="color: black">
+      &times;
+    </button>
+  </div>
+  <div class="cart-body">
+    <div class="shopping__cart">
+      <div class="shopping__cart__inner">
+        <div class="offsetmenu__close__btn">
+          <a href="javascript:void(0)">
+            <i class="zmdi zmdi-close"></i>
+          </a>
+        </div>
+        <div class="shp__cart__wrap">
+          <div class="shp__single__product">
+            <div class="shp__pro__thumb">
+              <a href="#">
+                <img
+                  src="../../../assets/product-1.jpg"
+                  alt="product images"
+                  style="width: 200px"
+                />
+              </a>
+            </div>
+            <div class="shp__pro__details">
+              <h2><a href="/product-details">Women's Blouse</a></h2>
+              <span class="quantity">QTY: 1</span> <br />
+              <span class="shp__price">$16.00</span>
+            </div>
+            <div class="remove__btn">
+              <a href="#" title="Remove this item">
+                <i class="zmdi zmdi-close"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ul class="shoping__total">
+          <li class="subtotal" style="font-size: 20px">Subtotal:</li>
+          <li class="total__price" style="color: #c43b68">$130.00</li>
+        </ul>
+        <ul class="shopping__btn">
+          <li class="shp__checkout"><a routerLink="/cart">View Cart</a></li>
+          <li class="shp__checkout">
+            <a routerLink="/checkout">Checkout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

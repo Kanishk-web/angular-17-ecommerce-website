@@ -74,7 +74,7 @@ https://react.webatsolution.com/admin//wp-json/wc/v3/products?page=1&per_page=12
   // api.service.ts
   getProductById(productId: number) {
     const url = `https://react.webatsolution.com/admin/wp-json/wc/v3/products/${productId}?consumer_key=ck_0355c5422caae1dcddf7d04927f05fc0b3ef2eac&consumer_secret=cs_fbdfc5b9ad887156155c42eddc4aa98877eddd79`;
-    return this.http.get<any>(url); // Replace with actual API endpoint
+    return this.http.get<any>(url);
   }
 
   //Register API Call
@@ -142,5 +142,20 @@ https://react.webatsolution.com/admin//wp-json/wc/v3/products?page=1&per_page=12
         )}`,
       },
     });
+  }
+
+  //Get sidebar Products
+
+  getSidebarProducts(): Observable<any> {
+    return this.http.get(
+      `https://react.webatsolution.com/admin//wp-json/wc/v3/products/categories?page=1&per_page=20`
+    );
+  }
+
+  // Products Page
+  getProductsData(): Observable<any> {
+    return this.http.get(
+      'https://react.webatsolution.com/admin//wp-json/wc/v3/products?page=1&per_page=21'
+    );
   }
 }

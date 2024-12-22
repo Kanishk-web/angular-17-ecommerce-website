@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { ApiService } from '../../services/api.service';
@@ -12,14 +10,7 @@ import { WishlistService } from '../../services/wishlist.service';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    CommonModule,
-    RouterLink,
-    HttpClientModule,
-    BreadcrumbComponent,
-  ],
+  imports: [CommonModule, HttpClientModule, BreadcrumbComponent],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
@@ -31,7 +22,8 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private apiService: ApiService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    public changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -46,20 +38,22 @@ export class ProductDetailsComponent implements OnInit {
   fetchProductDetails(productId: number) {
     console.log('Fetching product details for Product ID:', productId);
 
-    this.apiService.getProductById(productId).subscribe(
-      (response) => {
+    this.apiService.getProductById(productId).subscribe({
+      next: (response) => {
         console.log('API response:', response);
         this.product = response;
+        console.log(this.product);
+        this.changeDetector.detectChanges();
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching product details:', error);
         if (error.status === 404) {
           console.log('Product not found. Please verify the Product ID.');
         } else {
           console.log('An unknown error occurred.');
         }
-      }
-    );
+      },
+    });
   }
 
   // Add to Wishlist function

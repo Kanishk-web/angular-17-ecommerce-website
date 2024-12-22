@@ -73,4 +73,58 @@ export class CategoryComponent {
   addToWishlist(item: any) {
     this.wishlistService.addToWishlist(item);
   }
+
+  //filter
+  //   class Product extends React.Component {
+  //     constructor(props) {
+  //       super(props);
+
+  //       this.state = {
+  //         categoryFilter : [],
+  //         categoryFilterIds : [],
+  //         posts : [],
+  //         filterInputCategory: [],
+  //       }
+  //       this.currentPage = 1;
+  //       this.totalPages = 21;
+
+  //       this.currentPageCat = 1;
+  //       this.totalPagesCat = 20;
+
+  //     }
+
+  //     componentDidMount() {
+  //       this.filterSidebar();
+  //       this.filterProduct();
+  //     }
+
+  //     filterSidebar(){
+  //       const url = Endpoint.GET_CATEGORY_LISTING_FILTER +`?page=${ this.currentPageCat }&per_page=${this.totalPagesCat}`;
+  //       Client.getWithLoader(url,(response) => {
+  //           this.setState({categoryFilter: response.data});
+  //         },
+  //         (error) => {
+  //           this.setState({categoryFilter: [] });
+  //         }
+  //       );
+  //     }
+
+  //     filterProduct(){
+  //       let url = Endpoint.GET_PRODUCT_LISTING +`?page=${ this.currentPage }&per_page=${this.totalPages}`;
+  //       if(StringUtils.isNotEmpty(this.state.filterInputCategory)){
+  //          url = url +`&category=${ this.state.filterInputCategory }`;
+  //       }
+
+  //       Client.getWithLoader(url,(response) => {
+  //         this.setState({posts: response.data});
+  //         },
+  //         (error) => {
+
+  //         }
+  //       );
+  //      }
+
+  //      clearFilter(){
+  //       console.log("ClearFilter");
+  //     }
 }

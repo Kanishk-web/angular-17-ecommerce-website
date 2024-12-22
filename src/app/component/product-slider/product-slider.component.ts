@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../../services/api.service';
@@ -34,19 +34,22 @@ export class ProductSliderComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private cartService: CartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    public changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.apiService.getOffersProducts().subscribe(
-      (response: any) => {
-        console.log('Fetched data from API:', response);
+    this.apiService.getOffersProducts().subscribe({
+      next: (response: any) => {
+        console.log('Fetch data from api: ', response);
         this.products = response.data || response;
+        console.log(this.products);
+        this.changeDetector.detectChanges();
       },
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
+      error: (error) => {
+        console.log('Error fetching sliders', error);
+      },
+    });
   }
 
   toggleCart() {}

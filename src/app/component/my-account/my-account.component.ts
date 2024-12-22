@@ -9,13 +9,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 @Component({
   selector: 'app-my-account',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    HeaderComponent,
-    FooterComponent,
-    BreadcrumbComponent,
-  ],
+  imports: [RouterOutlet, RouterLink, BreadcrumbComponent],
   templateUrl: './my-account.component.html',
   styleUrl: './my-account.component.css',
 })
